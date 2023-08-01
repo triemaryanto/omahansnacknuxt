@@ -23,7 +23,7 @@
                 class="breadcrumb-item text-sm text-dark active"
                 aria-current="page"
               >
-                Product
+                Products
               </li>
             </ol>
           </nav>
@@ -33,7 +33,7 @@
             <div class="input-group mb-3">
               <div class="input-group">
                 <nuxt-link
-                  :to="{ name: 'dashboard-category-create' }"
+                  :to="{ name: 'dashboard-product-create' }"
                   class="btn bg-gradient-dark"
                 >
                   <i class="fa fa-plus-circle"></i> TAMBAH
@@ -42,7 +42,11 @@
               <div class="ms-md-auto pe-md-3 d-flex align-items-center">
                 <div class="input-group">
                   <span class="input-group-text text-body"
-                    ><i class="fas fa-search" aria-hidden="true"></i
+                    ><i
+                      @click="searchData"
+                      class="fas fa-search"
+                      aria-hidden="true"
+                    ></i
                   ></span>
                   <input
                     type="text"
@@ -61,17 +65,29 @@
               table
               align-items-center
               mb-0
-              :items="categories"
+              :items="products"
               :fields="fields"
               show-empty
             >
+              <template v-slot:cell(category.name)="data">
+                <div class="align-middle text-center text-sm">
+                  <span class="badge badge-sm bg-gradient-danger">{{
+                    data.item.category.name
+                  }}</span>
+                </div>
+              </template>
               <template v-slot:cell(image)="data">
-                <img class="img-fluid" width="50" :src="data.item.image" />
+                <div class="avatar avatar-xl position-relative">
+                  <img
+                    class="w-100 border-radius-lg shadow-sm"
+                    :src="data.item.image"
+                  />
+                </div>
               </template>
               <template v-slot:cell(actions)="row">
                 <b-button
                   :to="{
-                    name: 'dashboard-category-edit-id',
+                    name: 'dashboard-product-edit-id',
                     params: { id: row.item.id },
                   }"
                   variant="btn bg-gradient-primary"
@@ -82,7 +98,7 @@
                 <b-button
                   variant="btn bg-gradient-warning"
                   size="sm"
-                  @click="deleteCategory(row.item.id)"
+                  @click="deletePost(row.item.id)"
                   >HAPUS</b-button
                 >
               </template>
@@ -111,7 +127,7 @@ export default {
   //meta
   head() {
     return {
-      title: "Category - Coffe Shop - Android Corners",
+      title: "Product - Coffe Shop - Android Corners",
     };
   },
 
@@ -121,22 +137,35 @@ export default {
       //table header
       fields: [
         {
+          th: "Nama Product",
+          key: "name",
+          thClass:
+            "text-uppercase text-secondary text-xxs font-weight-bolder opacity-7",
+        },
+        {
+          th: "Harga",
+          key: "price",
+          thClass:
+            "text-uppercase text-secondary text-xxs font-weight-bolder opacity-7",
+        },
+        {
           th: "Gambar",
           key: "image",
           thClass:
             "text-uppercase text-secondary text-xxs font-weight-bolder opacity-7",
         },
         {
-          th: "Nama Category",
-          key: "name",
+          th: "Category",
+          key: "category.name",
           thClass:
-            "text-uppercase text-secondary text-xxs font-weight-bolder opacity-7",
+            "text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7",
         },
         {
           th: "Actions",
           key: "actions",
+          tdClass: "text-center",
           thClass:
-            "text-uppercase text-secondary text-xxs font-weight-bolder opacity-7",
+            "text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7",
         },
       ],
 
@@ -155,14 +184,14 @@ export default {
     //search
     let search = query.q ? query.q : "";
 
-    //fetching categories
-    const categories = await $axios.$get(
-      `/api/dashboard/categories?q=${search}&page=${page}`
+    //fetching posts
+    const products = await $axios.$get(
+      `/api/dashboard/products?q=${search}&page=${page}`
     );
 
     return {
-      categories: categories.data.data,
-      pagination: categories.data,
+      products: products.data.data,
+      pagination: products.data,
     };
   },
 
@@ -188,8 +217,8 @@ export default {
       });
     },
 
-    //deleteCategory method
-    deleteCategory(id) {
+    //deletePost method
+    deletePost(id) {
       this.$swal
         .fire({
           title: "APAKAH ANDA YAKIN ?",
@@ -203,8 +232,8 @@ export default {
         })
         .then((result) => {
           if (result.isConfirmed) {
-            //delete tag from server
-            this.$axios.delete(`/api/dashboard/categories/${id}`).then(() => {
+            //delete post from server
+            this.$axios.delete(`/api/dashboard/products/${id}`).then(() => {
               //feresh data
               this.$nuxt.refresh();
 
