@@ -28,7 +28,7 @@
     </li>
     <li class="nav-item">
       <nuxt-link :to="{ name: 'dashboard-transaction' }" class="nav-link">
-        <i class="ni ni-ui-04"></i>
+        <i class="ni ni-chat-round"></i>
         <span class="nav-link-text ms-1">Transactions</span>
       </nuxt-link>
     </li>
@@ -45,7 +45,7 @@
     </li>
     <li class="nav-item">
       <nuxt-link :to="{ name: 'dashboard-comment' }" class="nav-link">
-        <i class="ni ni-ui-04"></i>
+        <i class="ni ni-chat-round"></i>
         <span class="nav-link-text ms-1">Comments</span>
       </nuxt-link>
     </li>

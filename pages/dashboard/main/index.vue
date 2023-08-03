@@ -127,7 +127,7 @@
                 </div>
                 <div class="col-4 text-end">
   
-                  <i class="ni ni-money-coins text-lg opacity-10" aria-hidden="true"></i>
+                  <i class="ni ni-chat-round text-lg opacity-10" aria-hidden="true"></i>
   
                 </div>
               </div>
@@ -156,7 +156,7 @@
                   <div class="border-radius-lg h-100">
                     <template>
                       <img class="position-absolute h-100 w-90 top-0 d-lg-block d-none border-radius-lg h-100"
-                        :src="avatar" alt="avatar" />
+                        :src="avatar"  />
                     </template>
                   </div>
                 </div>

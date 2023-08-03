@@ -48,7 +48,8 @@
               >
                 Made with <i class="fa fa-heart"></i>
 
-                <strong>Copyright &copy; 2023.</strong> All rights reserved.
+                <strong>Copyright &copy; 2023.</strong>Tri Maryanto All rights
+                reserved.
               </div>
             </div>
           </div>
