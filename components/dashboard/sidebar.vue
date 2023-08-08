@@ -26,7 +26,7 @@
         <span class="nav-link-text ms-1">Posts</span>
       </nuxt-link>
     </li>
-    <li class="nav-item">
+    <li class="nav-item" v-if="hasPermission('master')">
       <nuxt-link :to="{ name: 'dashboard-transaction' }" class="nav-link">
         <i class="ni ni-chat-round"></i>
         <span class="nav-link-text ms-1">Transactions</span>
@@ -54,7 +54,33 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      userPermissions: [],
+    };
+  },
+  async mounted() {
+    try {
+      const response = await this.$axios.get(
+        "/api/dashboard/check-permissions"
+      );
+      console.log(
+        response.data.permissions.map((permission) => permission.name)
+      );
+      this.userPermissions = response.data.permissions.map(
+        (permission) => permission.name
+      );
+    } catch (error) {
+      console.error("Error fetching user permissions", error);
+    }
+  },
+  methods: {
+    hasPermission(permission) {
+      return this.userPermissions.includes(permission);
+    },
+  },
+};
 </script>
 
 <style scoped>

@@ -1,4 +1,5 @@
 export default {
+  ssr: false,
   build: {
     babel: {
       plugins: [
@@ -114,6 +115,7 @@ export default {
       logout: "/",
       callback: "/",
       home: "/dashboard/main",
+      middleware: "auth",
     },
   },
   // Build Configuration: https://go.nuxtjs.dev/config-build
