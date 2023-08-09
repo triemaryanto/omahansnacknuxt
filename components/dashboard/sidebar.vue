@@ -3,17 +3,75 @@
 
   <ul class="navbar-nav">
     <li class="nav-item">
+      <nuxt-link :to="{ name: 'dashboard-home' }" class="nav-link">
+        <i class="ni ni-tv-2"></i>
+        <span class="nav-link-text ms-1">Home</span>
+      </nuxt-link>
+    </li>
+    <li class="nav-item mt-3">
+      <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">
+        Menu Admin
+      </h6>
+    </li>
+
+    <li class="nav-item">
+      <a
+        data-bs-toggle="collapse"
+        href="#applicationsExamples"
+        class="nav-link"
+        aria-controls="applicationsExamples"
+        role="button"
+        aria-expanded="false"
+      >
+        <div
+          class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center me-2"
+        >
+       
+        </div>
+        <span class="nav-link-text ms-1">Master</span>
+      </a>
+      <div class="collapse" id="applicationsExamples">
+        <ul class="nav ms-4 ps-3">
+          <li class="nav-item">
+            <nuxt-link :to="{ name: 'dashboard-category' }" class="nav-link">
+              <span class="nav-link-text ms-1">Categories</span>
+            </nuxt-link>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../../pages/applications/wizard.html">
+              <span class="sidenav-mini-icon"> W </span>
+              <span class="sidenav-normal"> Wizard </span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../../pages/applications/datatables.html">
+              <span class="sidenav-mini-icon"> D </span>
+              <span class="sidenav-normal"> DataTables </span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../../pages/applications/calendar.html">
+              <span class="sidenav-mini-icon"> C </span>
+              <span class="sidenav-normal"> Calendar </span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../../pages/applications/analytics.html">
+              <span class="sidenav-mini-icon"> A </span>
+              <span class="sidenav-normal"> Analytics </span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </li>
+
+    <li class="nav-item">
       <nuxt-link :to="{ name: 'dashboard-main' }" class="nav-link">
         <i class="ni ni-tv-2"></i>
         <span class="nav-link-text ms-1">Dashboard</span>
       </nuxt-link>
     </li>
-    <li class="nav-item">
-      <nuxt-link :to="{ name: 'dashboard-category' }" class="nav-link">
-        <i class="ni ni-ungroup"></i>
-        <span class="nav-link-text ms-1">Categories</span>
-      </nuxt-link>
-    </li>
+
     <li class="nav-item">
       <nuxt-link :to="{ name: 'dashboard-product' }" class="nav-link">
         <i class="ni ni-shop"></i>
@@ -36,6 +94,12 @@
       <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">
         SETTING
       </h6>
+    </li>
+    <li class="nav-item">
+      <nuxt-link :to="{ name: 'dashboard-profile' }" class="nav-link">
+        <i class="ni ni-ui-04"></i>
+        <span class="nav-link-text ms-1">Profile</span>
+      </nuxt-link>
     </li>
     <li class="nav-item">
       <nuxt-link :to="{ name: 'dashboard-user' }" class="nav-link">
