@@ -225,9 +225,6 @@
   }
   </script>
   
-  }
-  </script>
-  
   <style>
   
   </style>
