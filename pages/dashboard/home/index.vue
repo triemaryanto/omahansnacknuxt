@@ -27,7 +27,7 @@
     <div class="row">
       <div v-for="items in product" :key="items.id" class="col-lg-3 col-md-6 col-sm-6 d-flex">
         <div class="card w-100 my-2 shadow-2-strong">
-          <img src="{{items.image}}" class="card-img-top" style="aspect-ratio: 1 / 1" />
+          <img :src="items.image" class="card-img-top" style="aspect-ratio: 1 / 1" />
           <div class="card-body d-flex flex-column">
             <h5 class="card-title">{{ items.name }}</h5>
             <p class="card-text">Rp. {{ items.price }}</p>

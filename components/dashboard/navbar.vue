@@ -13,16 +13,22 @@
             href="javascript:;"
             class="nav-link text-body font-weight-bold px-0"
           >
-            <i class="fa fa-coffee me-sm-1"></i>
+            <i class="fa fa-shopping-cart me-sm-1"
+              ><i class="fa badge fa-sm" value="5">&#xf290;</i></i
+            >
+          </a>
+        </li>
+
+        <li class="nav-item d-flex align-items-center">
+          <a
+            href="javascript:;"
+            class="nav-link text-body font-weight-bold px-0"
+          >
             <span class="d-sm-inline d-none">{{ user.name }}</span>
           </a>
         </li>
         <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
-          <a
-            href="javascript:;"
-            class="nav-link text-body p-0"
-            id="iconNavbarSidenav"
-          >
+          <a @click="toggleClass" class="nav-link text-body p-0">
             <div class="sidenav-toggler-inner">
               <i class="sidenav-toggler-line"></i>
               <i class="sidenav-toggler-line"></i>
@@ -74,8 +80,27 @@ export default {
         name: "index",
       });
     },
+    toggleClass() {
+      this.$root.$on("dashboard", () => {
+        // your code goes here
+        this.toggleClass();
+      });
+    },
   },
 };
 </script>
 
-<style></style>
+<style>
+.badge:after {
+  content: attr(value);
+  font-size: 12px;
+  color: #fff;
+  background: rgb(85, 80, 80);
+  border-radius: 50%;
+  padding: 0 5px;
+  position: relative;
+  left: -8px;
+  top: -10px;
+  opacity: 0.9;
+}
+</style>
